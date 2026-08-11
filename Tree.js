@@ -21,11 +21,15 @@ export class Tree {
             if (arr.length === 1) {
                 return arr[0];
             } else if (arr.length === 2) {
-                console.log("haven't done this bit yet :(");
-                return undefined;
+                const node = new Node();
+                const childNode = new Node();
+                childNode.storedData = arr[1];
+                node.storedData = arr[0];
+                node.rightChild = childNode;
+                return node;
             }
         } else if (arr.length > 2) {
-            const middle = (arr.length - 1) / 2;
+            const middle = Math.floor((arr.length - 1) / 2);
             const rootValue = arr[middle];
             const leftNodes = this.buildTree(arr.slice(0, middle));
             const rightNodes = this.buildTree(arr.slice(middle + 1));
