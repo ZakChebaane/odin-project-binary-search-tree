@@ -97,20 +97,28 @@ export class Tree {
     deleteItem(value, node = this.root) {
         if (node.storedData === value) {
             // Delete this node
-            return true;
-        } else if (node.leftChild || node.rightChild) {
-            if (node.leftChild) {
-                const deleteChild = this.deleteItem(value, node.leftChild);
-                if (deleteChild) {
-                    node.leftChild = null;
-                    return;
-                }
+            if (node.leftChild && node.rightChild) {
+                return 1;
+            } else if (node.leftChild && !node.rightChild) {
+                return 2;
+            } else if (!node.leftChild && node.rightChild) {
+                return 3;
+            } else if (!node.leftChild && !node.rightChild) {
+                return 4;
             }
-            if (node.rightChild) {
-                const deleteChild = this.deleteItem(value, node.rightChild);
-                if (deleteChild) {
-                    node.rightChild = null;
-                }
+        }
+        if (node.leftChild) {
+            const returnNum = this.deleteItem(value, node.leftChild);
+            if (returnNum === 4) {
+                node.leftChild = null;
+                return;
+            }
+        }
+        if (node.rightChild) {
+            const returnNum = this.deleteItem(value, node.rightChild);
+            if (returnNum === 4) {
+                node.rightChild = null;
+                return;
             }
         }
     }
