@@ -41,7 +41,7 @@ export class Tree {
             return node;
         }
     }
-    prettyPrint(node, prefix = '', isLeft = true) {
+    prettyPrint(node = this.root, prefix = '', isLeft = true) {
         if (node === null || node === undefined) {
             return;
         }
@@ -49,5 +49,22 @@ export class Tree {
         this.prettyPrint(node.rightChild, `${prefix}${isLeft ? '│   ' : '    '}`, false);
         console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.storedData}`);
         this.prettyPrint(node.leftChild, `${prefix}${isLeft ? '    ' : '│   '}`, true);
+    }
+    includes(value, node = this.root) {
+        if (!node.storedData) {
+            return false;
+        } else if (node.storedData && node.storedData === value) {
+            return true;
+        } else if (node.leftChild || node.rightChild) {
+            if (node.leftChild) {
+                let doesContain = this.includes(value, node.leftChild);
+                if (doesContain) { return true }
+            }
+            if (node.rightChild) {
+                let doesContain = this.includes(value, node.rightChild);
+                if (doesContain) { return true }
+            }
+            return false;
+        }
     }
 }
