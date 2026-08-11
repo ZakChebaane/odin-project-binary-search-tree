@@ -3,7 +3,6 @@ import {Node} from "./Node.js";
 export class Tree {
     constructor(passedArr) {
         this.root = this.buildTree(passedArr);
-        console.log(this.root);
     }
     buildTree(arr) {
         // sort the arr and remove duplicates
@@ -19,7 +18,9 @@ export class Tree {
         if (arr.length <= 2) {
             // Base Case
             if (arr.length === 1) {
-                return arr[0];
+                const node = new Node();
+                node.storedData = arr[0];
+                return node;
             } else if (arr.length === 2) {
                 const node = new Node();
                 const childNode = new Node();
@@ -39,5 +40,14 @@ export class Tree {
             node.rightChild = rightNodes;
             return node;
         }
+    }
+    prettyPrint(node, prefix = '', isLeft = true) {
+        if (node === null || node === undefined) {
+            return;
+        }
+
+        this.prettyPrint(node.rightChild, `${prefix}${isLeft ? '│   ' : '    '}`, false);
+        console.log(`${prefix}${isLeft ? '└── ' : '┌── '}${node.storedData}`);
+        this.prettyPrint(node.leftChild, `${prefix}${isLeft ? '    ' : '│   '}`, true);
     }
 }
