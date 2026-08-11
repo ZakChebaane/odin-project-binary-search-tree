@@ -4,5 +4,7 @@ const myBST = new Tree([1,5,2,1,4,6,7,3,8]);
 
 myBST.prettyPrint();
 
-console.log(myBST.includes(4));
+myBST.deleteItem(2);
 
+
+ myBST.prettyPrint();

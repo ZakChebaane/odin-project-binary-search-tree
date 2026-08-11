@@ -67,4 +67,51 @@ export class Tree {
             return false;
         }
     }
+    insert(value) {
+        let node = this.root;
+        let run = true;
+        while(run) {
+            if(value < node.storedData) {
+                if(node.leftChild) {
+                    node = node.leftChild;
+                } else if (!node.leftChild) {
+                    const newNode = new Node();
+                    newNode.storedData = value;
+                    node.leftChild = newNode;
+                    run = false;
+                }
+            } else if (value > node.storedData) {
+                if (node.rightChild) {
+                    node = node.rightChild;
+                } else if (!node.rightChild) {
+                    const newNode = new Node();
+                    newNode.storedData = value;
+                    node.rightChild = newNode;
+                    run = false;
+                }
+            } else if (value === node.storedData) {
+                return;
+            }
+        }
+    }
+    deleteItem(value, node = this.root) {
+        if (node.storedData === value) {
+            // Delete this node
+            return true;
+        } else if (node.leftChild || node.rightChild) {
+            if (node.leftChild) {
+                const deleteChild = this.deleteItem(value, node.leftChild);
+                if (deleteChild) {
+                    node.leftChild = null;
+                    return;
+                }
+            }
+            if (node.rightChild) {
+                const deleteChild = this.deleteItem(value, node.rightChild);
+                if (deleteChild) {
+                    node.rightChild = null;
+                }
+            }
+        }
+    }
 }
