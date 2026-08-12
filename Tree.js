@@ -98,7 +98,11 @@ export class Tree {
         if (node.storedData === value) {
             // Delete this node
             if (node.leftChild && node.rightChild) {
-                return 1;
+                // return 1;
+                const currValue = node.storedData;
+                const smallestValue = this.getSmallestValue(node.rightChild, node.storedData);
+                node.storedData = smallestValue;
+                this.deleteItem(currValue);
             } else if (node.leftChild && !node.rightChild) {
                 return 2;
             } else if (!node.leftChild && node.rightChild) {
@@ -135,5 +139,16 @@ export class Tree {
                 node.rightChild = node.rightChild.rightChild;
             }
         }
+    }
+    getSmallestValue (node, nodeValue) {
+        let smallestValue = node.storedData;
+        while (node.leftChild) {
+            node = node.leftChild;
+            smallestValue = node.storedData;
+        }
+        if (!node.leftChild) {
+            node.storedData = nodeValue;
+        }
+        return smallestValue;
     }
 }
