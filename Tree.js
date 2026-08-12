@@ -94,7 +94,7 @@ export class Tree {
             }
         }
     }
-    deleteItem(value, node = this.root) {
+    deleteItem(value, node = this.root, firstNode = true) {
         if (node.storedData === value) {
             // Delete this node
             if (node.leftChild && node.rightChild) {
@@ -104,15 +104,21 @@ export class Tree {
                 node.storedData = smallestValue;
                 this.deleteItem(currValue);
             } else if (node.leftChild && !node.rightChild) {
-                return 2;
+                if (firstNode) {
+                    this.root = this.root.leftChild;
+                } else { return 2 }
             } else if (!node.leftChild && node.rightChild) {
-                return 3;
+                if (firstNode) {
+                    this.root = this.root.rightChild;
+                } else { return 3 }
             } else if (!node.leftChild && !node.rightChild) {
-                return 4;
+                if (firstNode) {
+                    this.root = null;
+                } else { return 4 }
             }
         }
         if (node.leftChild) {
-            const returnNum = this.deleteItem(value, node.leftChild);
+            const returnNum = this.deleteItem(value, node.leftChild, false);
             if (returnNum === 4) {
                 node.leftChild = null;
                 return;
@@ -126,7 +132,7 @@ export class Tree {
             }
         }
         if (node.rightChild) {
-            const returnNum = this.deleteItem(value, node.rightChild);
+            const returnNum = this.deleteItem(value, node.rightChild, false);
             if (returnNum === 4) {
                 node.rightChild = null;
                 return;
