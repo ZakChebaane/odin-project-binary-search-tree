@@ -112,6 +112,13 @@ export class Tree {
             if (returnNum === 4) {
                 node.leftChild = null;
                 return;
+            } else if (returnNum === 3) {
+                // there is a right child
+                node.leftChild = node.leftChild.rightChild;
+                return;
+            } else if (returnNum === 2) {
+                // there is a left child
+                node.leftChild = node.leftChild.leftChild;
             }
         }
         if (node.rightChild) {
@@ -119,6 +126,13 @@ export class Tree {
             if (returnNum === 4) {
                 node.rightChild = null;
                 return;
+            } else if (returnNum === 3) {
+                // there is a right child
+                node.rightChild = node.rightChild.rightChild;
+                return;
+            } else if (returnNum === 2) {
+                // there is a left child
+                node.rightChild = node.rightChild.rightChild;
             }
         }
     }
