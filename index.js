@@ -14,5 +14,9 @@ myBST.deleteItem(5);
 myBST.deleteItem(8);
 
 myBST.insert(6);
+myBST.insert(2);
+myBST.insert(3);
+myBST.insert(4);
+myBST.insert(1);
 
 myBST.prettyPrint();

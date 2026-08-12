@@ -71,7 +71,14 @@ export class Tree {
         let node = this.root;
         let run = true;
         while(run) {
-            if(value < node.storedData) {
+            // empty
+            if (!node) {
+                const newNode = new Node();
+                newNode.storedData = value;
+                this.root = newNode;
+                run = false;
+            }
+            else if(value < node.storedData) {
                 if(node.leftChild) {
                     node = node.leftChild;
                 } else if (!node.leftChild) {
