@@ -169,9 +169,8 @@ export class Tree {
         if(!callback) { throw new Error("Callback is Required"); }
         const breadthQueue = new Queue();
         let currNode = this.root;
-        let run = true;
 
-        while(run) {
+        while(1) {
             callback(currNode.storedData);
             if(currNode.leftChild) {
                 breadthQueue.enqueue(currNode.leftChild);
@@ -180,11 +179,49 @@ export class Tree {
                 breadthQueue.enqueue(currNode.rightChild);
             }
             if (breadthQueue.queue.length === 0 && currNode) {
-                run = false;
+                return;
             }
             currNode = breadthQueue.queue[0];
             breadthQueue.dequeue();
         }
     }
-    
+    preOrderForEach(callback, root = this.root) {
+        if (!callback) { throw new Error("Callback is Required"); }
+        callback(root.storedData);
+        if (!root.leftChild && !root.rightChild) {
+            return;
+        }
+        if(root.leftChild) {
+            this.preOrderForEach(callback, root.leftChild);
+        }
+        if(root.rightChild) {
+            this.preOrderForEach(callback, root.rightChild);
+        }
+    }
+    inOrderForEach(callback, root = this.root) {
+        if (!callback) { throw new Error("Callback is Required"); }
+        if (!root) {
+            return;
+        }
+        if(root.leftChild) {
+            this.inOrderForEach(callback, root.leftChild);
+        }
+        callback(root.storedData);
+        if(root.rightChild) {
+            this.inOrderForEach(callback, root.rightChild);
+        }
+    }
+    postOrderForEach(callback, root = this.root) {
+        if (!callback) { throw new Error("Callback is Required"); }
+        if(!root) {
+            return;
+        }
+        if(root.leftChild) {
+            this.postOrderForEach(callback, root.leftChild);
+        }
+        if (root.rightChild) {
+            this.postOrderForEach(callback, root.rightChild);
+        }
+        callback(root.storedData);
+    }
 }
