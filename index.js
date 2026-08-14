@@ -22,5 +22,5 @@ myBST.insert(1);
 
  */
 
-myBST.levelOrderForEach((el) => {el *= 2});
+myBST.levelOrderForEach((el) => {console.log(el)});
 

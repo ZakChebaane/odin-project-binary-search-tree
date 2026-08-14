@@ -166,6 +166,25 @@ export class Tree {
         return smallestValue;
     }
     levelOrderForEach(callback) {
+        if(!callback) { throw new Error("Callback is Required"); }
+        const breadthQueue = new Queue();
+        let currNode = this.root;
+        let run = true;
 
+        while(run) {
+            callback(currNode.storedData);
+            if(currNode.leftChild) {
+                breadthQueue.enqueue(currNode.leftChild);
+            }
+            if(currNode.rightChild) {
+                breadthQueue.enqueue(currNode.rightChild);
+            }
+            if (breadthQueue.queue.length === 0 && currNode) {
+                run = false;
+            }
+            currNode = breadthQueue.queue[0];
+            breadthQueue.dequeue();
+        }
     }
+    
 }
