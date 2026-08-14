@@ -4,6 +4,7 @@ const myBST = new Tree([1,5,2,1,4,6,7,3,8]);
 
 myBST.prettyPrint();
 
+/*
 myBST.deleteItem(4);
 myBST.deleteItem(6);
 myBST.deleteItem(7);
@@ -19,4 +20,7 @@ myBST.insert(3);
 myBST.insert(4);
 myBST.insert(1);
 
-myBST.prettyPrint();
+ */
+
+myBST.levelOrderForEach((el) => {el *= 2});
+
