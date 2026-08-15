@@ -229,7 +229,9 @@ export class Tree {
         // first find the value
         let currNode = this.root;
         while(1) {
-            if(currNode.storedData > value) {
+            if (!currNode) {
+                return undefined;
+            } else if(currNode.storedData > value) {
                 currNode = currNode.leftChild;
             } else if (currNode.storedData < value) {
                 currNode = currNode.rightChild;
@@ -255,7 +257,9 @@ export class Tree {
             return ++leftValue;
         } else if (leftValue < rightValue || leftValue === undefined) {
             return ++rightValue;
+        } else if (leftValue === rightValue) {
+            return ++leftValue;
         }
     }
-    
+
 }
