@@ -261,5 +261,21 @@ export class Tree {
             return ++leftValue;
         }
     }
-
+    depth(value) {
+        let currNode = this.root;
+        let depth = 0;
+        while(1) {
+            if (!currNode) {
+                return undefined;
+            } else if(currNode.storedData < value) {
+                currNode = currNode.rightChild;
+                depth++;
+            } else if (currNode.storedData > value) {
+                currNode = currNode.leftChild;
+                depth++;
+            } else if (currNode.storedData === value) {
+                return depth;
+            }
+        }
+    }
 }

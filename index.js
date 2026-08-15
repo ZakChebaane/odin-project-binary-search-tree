@@ -26,5 +26,5 @@ myBST.insert(1);
  */
 
 // myBST.postOrderForEach((el) => {console.log(el)});
-console.log(myBST.height(2));
+console.log(myBST.depth(6.4));
 
