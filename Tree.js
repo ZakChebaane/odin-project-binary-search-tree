@@ -224,4 +224,38 @@ export class Tree {
         }
         callback(root.storedData);
     }
+    height(value) {
+        // find the value then see how long the longest path down is
+        // first find the value
+        let currNode = this.root;
+        while(1) {
+            if(currNode.storedData > value) {
+                currNode = currNode.leftChild;
+            } else if (currNode.storedData < value) {
+                currNode = currNode.rightChild;
+            } else if (currNode.storedData === value) {
+                return (this.getHeight(currNode)) - 1;
+            }
+        }
+    }
+    getHeight(node) {
+        // compare which height his bigger and return that one recursively
+        let leftValue;
+        let rightValue;
+        if (!node.leftChild && !node.rightChild) {
+            return 1;
+        }
+        if (node.leftChild) {
+            leftValue = this.getHeight(node.leftChild);
+        }
+        if (node.rightChild) {
+            rightValue = this.getHeight(node.rightChild);
+        }
+        if (leftValue > rightValue || rightValue === undefined) {
+            return ++leftValue;
+        } else if (leftValue < rightValue || leftValue === undefined) {
+            return ++rightValue;
+        }
+    }
+    
 }

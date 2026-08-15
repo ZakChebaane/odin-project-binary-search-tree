@@ -2,6 +2,9 @@ import {Tree} from "./Tree.js";
 
 const myBST = new Tree([1,5,2,1,4,6,7,3,8]);
 
+myBST.insert(6.5);
+myBST.insert(6.4);
+
 myBST.prettyPrint();
 
 /*
@@ -22,5 +25,6 @@ myBST.insert(1);
 
  */
 
-myBST.postOrderForEach((el) => {console.log(el)});
+// myBST.postOrderForEach((el) => {console.log(el)});
+console.log(myBST.height(4));
 
