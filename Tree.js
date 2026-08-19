@@ -279,15 +279,33 @@ export class Tree {
         }
     }
     isBalanced(node = this.root) {
-        if(
+        if (!node.leftChild && !node.rightChild) {
+            return true;
+        } else if(!node.leftChild) {
+            // check if right child is one value off
+            if(this.height(node.rightChild.storedData) === 0) {
+                return true;
+            } else if(this.height(node.rightChild.storedData) > 0) {
+                return false;
+            }
+        } else if (!node.rightChild) {
+            // check if left child is one value off
+            if (this.height(node.leftChild.storedData) === 0) {
+                return true;
+            } else if (this.height(node.leftChild.storedData) > 0) {
+                return false;
+            }
+        } else if(
             this.height(node.leftChild.storedData) === this.height(node.rightChild.storedData) ||
             this.height(node.leftChild.storedData) === (this.height(node.rightChild.storedData) + 1) ||
             (this.height(node.leftChild.storedData) + 1) === this.height(node.rightChild.storedData))
         {
             // tree values are equal or within 1 of each other
-            console.log("Balanced");
+            const isLeftBal = this.isBalanced(node.leftChild);
+            const isRightBal = this.isBalanced(node.rightChild);
+            return (isLeftBal && isRightBal);
         } else {
-            console.log("Not balanced");
+            return false;
         }
     }
 }
