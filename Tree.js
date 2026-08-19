@@ -308,4 +308,9 @@ export class Tree {
             return false;
         }
     }
+    rebalance() {
+        const treeArr = [];
+        this.inOrderForEach((el) => { treeArr.push(el) });
+        this.root = this.buildTree(treeArr);
+    }
 }
