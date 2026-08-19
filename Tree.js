@@ -278,4 +278,16 @@ export class Tree {
             }
         }
     }
+    isBalanced(node = this.root) {
+        if(
+            this.height(node.leftChild.storedData) === this.height(node.rightChild.storedData) ||
+            this.height(node.leftChild.storedData) === (this.height(node.rightChild.storedData) + 1) ||
+            (this.height(node.leftChild.storedData) + 1) === this.height(node.rightChild.storedData))
+        {
+            // tree values are equal or within 1 of each other
+            console.log("Balanced");
+        } else {
+            console.log("Not balanced");
+        }
+    }
 }

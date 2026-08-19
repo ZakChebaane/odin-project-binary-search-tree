@@ -1,30 +1,18 @@
 import {Tree} from "./Tree.js";
 
-const myBST = new Tree([1,5,2,1,4,6,7,3,8]);
+// const myBST = new Tree([1,5,2,1,4,6,7,3,8]);
+const myBST = new Tree([4]);
 
-myBST.insert(6.5);
-myBST.insert(6.4);
+myBST.insert(3);
+myBST.insert(2);
+myBST.insert(1);
+myBST.insert(5);
+myBST.insert(6);
+myBST.insert(7);
+myBST.insert(8);
 
 myBST.prettyPrint();
 
-/*
-myBST.deleteItem(4);
-myBST.deleteItem(6);
-myBST.deleteItem(7);
-myBST.deleteItem(2);
-myBST.deleteItem(3);
-myBST.deleteItem(1);
-myBST.deleteItem(5);
-myBST.deleteItem(8);
-
-myBST.insert(6);
-myBST.insert(2);
-myBST.insert(3);
-myBST.insert(4);
-myBST.insert(1);
-
- */
-
-// myBST.postOrderForEach((el) => {console.log(el)});
-console.log(myBST.depth(6.4));
+// console.log(myBST.height(6));
+myBST.isBalanced();
 
